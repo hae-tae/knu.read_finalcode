@@ -34,6 +34,15 @@
     overflow: hidden;
   }
 
+  /* ── Mobile base ── */
+  @media (max-width: 600px) {
+    html, body {
+      overflow: auto;
+      height: auto;
+      min-height: 100%;
+    }
+  }
+
   /* Star field */
   .stars {
     position: fixed;
@@ -80,6 +89,14 @@
     gap: 0;
     padding: 2rem;
   }
+  @media (max-width: 600px) {
+    .shell {
+      height: auto;
+      min-height: 100vh;
+      padding: 56px 1rem 5rem; /* top: statusbar clearance, bottom: coord clearance */
+      justify-content: flex-start;
+    }
+  }
 
   /* Top status bar */
   .statusbar {
@@ -98,6 +115,14 @@
     letter-spacing: 0.15em;
     color: var(--c-dim);
     z-index: 10;
+  }
+  @media (max-width: 400px) {
+    .statusbar {
+      padding: 0 0.75rem;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+    .statusbar .blink { display: none; }
   }
   .statusbar .blink {
     color: var(--c-accent);
@@ -169,6 +194,11 @@
   /* Terminal body */
   .terminal-body {
     padding: 2rem 2rem 1.5rem;
+  }
+  @media (max-width: 480px) {
+    .terminal-body {
+      padding: 1.25rem 1rem 1rem;
+    }
   }
 
   /* Header */
@@ -253,6 +283,15 @@
     align-items: stretch;
     margin-bottom: 1rem;
   }
+  @media (max-width: 380px) {
+    .input-row {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .input-prefix {
+      font-size: 11px;
+    }
+  }
   .input-prefix {
     display: flex;
     align-items: center;
@@ -275,6 +314,15 @@
     text-transform: uppercase;
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
+    /* Prevent iOS auto-zoom (requires font-size >= 16px) */
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (max-width: 480px) {
+    .code-input {
+      font-size: 16px;
+      letter-spacing: 0.2em;
+      padding: 10px 10px;
+    }
   }
   .code-input::placeholder {
     color: var(--c-dim);
@@ -369,6 +417,13 @@
     line-height: 1.8;
     z-index: 10;
   }
+  @media (max-width: 600px) {
+    .coord-display {
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-size: 8px;
+    }
+  }
 
   /* Overlay on success */
   .overlay {
@@ -387,6 +442,13 @@
     border: 1px solid var(--c-success);
     background: var(--c-panel);
     animation: overlayIn 0.4s ease-out;
+    margin: 1rem;
+  }
+  @media (max-width: 480px) {
+    .overlay-box {
+      padding: 2rem 1.25rem;
+      width: 100%;
+    }
   }
   @keyframes overlayIn {
     from { opacity: 0; transform: scale(0.95); }
@@ -399,6 +461,12 @@
     letter-spacing: 0.25em;
     color: var(--c-success);
     margin-bottom: 12px;
+  }
+  @media (max-width: 480px) {
+    .overlay-title {
+      font-size: 16px;
+      letter-spacing: 0.15em;
+    }
   }
   .overlay-sub {
     font-family: var(--font-kr);
@@ -682,7 +750,11 @@
 
   // Focus input on load
   window.addEventListener('load', () => {
-    document.getElementById('codeInput').focus();
+    const input = document.getElementById('codeInput');
+    // On mobile, don't auto-focus (avoids keyboard popping up immediately)
+    if (window.innerWidth > 600) {
+      input.focus();
+    }
   });
 </script>
 </body>
