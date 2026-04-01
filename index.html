@@ -277,29 +277,11 @@
   }
 
   /* Input field */
-  .input-row {
-    display: flex;
-    gap: 10px;
-    align-items: stretch;
-    margin-bottom: 1rem;
-  }
-  @media (max-width: 380px) {
-    .input-row {
-      flex-direction: column;
-      gap: 6px;
-    }
-    .input-prefix {
-      font-size: 11px;
-    }
-  }
+  .input-row { display: flex; gap: 8px; align-items: stretch; margin-bottom: 0.875rem; }
   .input-prefix {
-    display: flex;
-    align-items: center;
-    color: var(--c-accent);
-    font-size: 14px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    user-select: none;
+    display: flex; align-items: center; color: var(--c-accent);
+    font-size: clamp(10px, 2.5vw, 12px);
+    white-space: nowrap; flex-shrink: 0; user-select: none;
   }
   .code-input {
     flex: 1;
