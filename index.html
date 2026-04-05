@@ -34,26 +34,13 @@
     overflow: hidden;
   }
 
-  /* ── Mobile base ── */
   @media (max-width: 600px) {
-    html, body {
-      overflow: auto;
-      height: auto;
-      min-height: 100%;
-    }
+    html, body { overflow: auto; height: auto; min-height: 100%; }
   }
 
-  /* Star field */
-  .stars {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
   .star {
-    position: absolute;
-    border-radius: 50%;
-    background: white;
+    position: absolute; border-radius: 50%; background: white;
     animation: twinkle var(--d, 3s) ease-in-out infinite;
     opacity: var(--o, 0.4);
   }
@@ -62,81 +49,35 @@
     50% { opacity: calc(var(--o, 0.4) * 0.2); }
   }
 
-  /* Scan line overlay */
   .scanlines {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.08) 2px,
-      rgba(0,0,0,0.08) 4px
-    );
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
   }
 
-  /* Main layout */
   .shell {
-    position: relative;
-    z-index: 2;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
+    position: relative; z-index: 2; height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 2rem;
   }
   @media (max-width: 600px) {
-    .shell {
-      height: auto;
-      min-height: 100vh;
-      padding: 56px 1rem 5rem; /* top: statusbar clearance, bottom: coord clearance */
-      justify-content: flex-start;
-    }
+    .shell { height: auto; min-height: 100vh; padding: 56px 1rem 5rem; justify-content: flex-start; }
   }
 
-  /* Top status bar */
   .statusbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 36px;
-    background: var(--c-panel);
-    border-bottom: 1px solid var(--c-border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--c-dim);
-    z-index: 10;
+    position: fixed; top: 0; left: 0; right: 0; height: 36px;
+    background: var(--c-panel); border-bottom: 1px solid var(--c-border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 1.5rem; font-size: 10px; letter-spacing: 0.15em; color: var(--c-dim); z-index: 10;
   }
   @media (max-width: 400px) {
-    .statusbar {
-      padding: 0 0.75rem;
-      font-size: 9px;
-      letter-spacing: 0.08em;
-    }
+    .statusbar { padding: 0 0.75rem; font-size: 9px; letter-spacing: 0.08em; }
     .statusbar .blink { display: none; }
   }
-  .statusbar .blink {
-    color: var(--c-accent);
-    animation: blink 1.2s step-end infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; } 50% { opacity: 0; }
-  }
+  .statusbar .blink { color: var(--c-accent); animation: blink 1.2s step-end infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   .status-dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--c-accent);
-    margin-right: 6px;
+    display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--c-accent); margin-right: 6px;
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
@@ -144,130 +85,53 @@
     50% { opacity: 0.4; transform: scale(0.8); }
   }
 
-  /* Terminal window */
   .terminal {
-    width: 100%;
-    max-width: 560px;
-    background: var(--c-panel);
-    border: 1px solid var(--c-glow);
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
+    width: 100%; max-width: 560px; background: var(--c-panel);
+    border: 1px solid var(--c-glow); border-radius: 4px; overflow: hidden; position: relative;
   }
-
   .terminal::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 4px;
-    border: 1px solid var(--c-glow);
-    opacity: 0.3;
-    pointer-events: none;
+    content: ''; position: absolute; inset: -1px; border-radius: 4px;
+    border: 1px solid var(--c-glow); opacity: 0.3; pointer-events: none;
   }
 
-  /* Terminal title bar */
   .terminal-bar {
-    background: var(--c-deep);
-    border-bottom: 1px solid var(--c-border);
-    padding: 8px 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--c-dim);
+    background: var(--c-deep); border-bottom: 1px solid var(--c-border);
+    padding: 8px 1rem; display: flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.12em; color: var(--c-dim);
   }
-  .tbar-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--c-border);
-  }
+  .tbar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-border); }
   .tbar-title {
-    flex: 1;
-    text-align: center;
-    font-family: var(--font-display);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    color: var(--c-accent);
+    flex: 1; text-align: center; font-family: var(--font-display);
+    font-size: 9px; letter-spacing: 0.25em; color: var(--c-accent);
   }
 
-  /* Terminal body */
-  .terminal-body {
-    padding: 2rem 2rem 1.5rem;
-  }
-  @media (max-width: 480px) {
-    .terminal-body {
-      padding: 1.25rem 1rem 1rem;
-    }
-  }
+  .terminal-body { padding: 2rem 2rem 1.5rem; }
+  @media (max-width: 480px) { .terminal-body { padding: 1.25rem 1rem 1rem; } }
 
-  /* Header */
   .main-title {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: clamp(18px, 4vw, 26px);
-    letter-spacing: 0.2em;
-    color: #ffffff;
-    text-align: center;
-    margin-bottom: 4px;
-    line-height: 1.2;
+    font-family: var(--font-display); font-weight: 900;
+    font-size: clamp(18px, 4vw, 26px); letter-spacing: 0.2em;
+    color: #ffffff; text-align: center; margin-bottom: 4px; line-height: 1.2;
   }
   .sub-title {
-    font-family: var(--font-kr);
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 0.25em;
-    color: var(--c-dim);
-    text-align: center;
-    margin-bottom: 2rem;
+    font-family: var(--font-kr); font-weight: 300; font-size: 11px;
+    letter-spacing: 0.25em; color: var(--c-dim); text-align: center; margin-bottom: 2rem;
   }
 
-  /* Divider */
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 2rem;
-  }
-  .divider-line {
-    flex: 1;
-    height: 1px;
-    background: var(--c-border);
-  }
+  .divider { display: flex; align-items: center; gap: 8px; margin-bottom: 2rem; }
+  .divider-line { flex: 1; height: 1px; background: var(--c-border); }
   .divider-icon {
-    width: 20px; height: 20px;
-    border: 1px solid var(--c-glow);
-    transform: rotate(45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 20px; height: 20px; border: 1px solid var(--c-glow);
+    transform: rotate(45deg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .divider-icon::after {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--c-accent);
-    transform: rotate(0deg);
-  }
+  .divider-icon::after { content: ''; width: 6px; height: 6px; background: var(--c-accent); }
 
-  /* Log area */
   .log-area {
-    background: var(--c-bg);
-    border: 1px solid var(--c-border);
-    border-radius: 2px;
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.5rem;
-    min-height: 60px;
-    font-size: 11px;
-    line-height: 1.8;
-    color: var(--c-dim);
-    font-family: var(--font-mono);
+    background: var(--c-bg); border: 1px solid var(--c-border); border-radius: 2px;
+    padding: 0.75rem 1rem; margin-bottom: 1.5rem; min-height: 60px;
+    font-size: 11px; line-height: 1.8; color: var(--c-dim); font-family: var(--font-mono);
   }
-  .log-area .log-line {
-    display: block;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
-  }
+  .log-area .log-line { display: block; opacity: 0; animation: fadeIn 0.3s forwards; }
   .log-area .log-line.success { color: var(--c-success); }
   .log-area .log-line.danger  { color: var(--c-danger); }
   .log-area .log-line.info    { color: var(--c-accent); }
@@ -276,205 +140,95 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Input field */
   .input-row { display: flex; gap: 8px; align-items: stretch; margin-bottom: 0.875rem; }
   .input-prefix {
     display: flex; align-items: center; color: var(--c-accent);
-    font-size: clamp(10px, 2.5vw, 12px);
-    white-space: nowrap; flex-shrink: 0; user-select: none;
+    font-size: clamp(10px, 2.5vw, 12px); white-space: nowrap; flex-shrink: 0; user-select: none;
   }
   .code-input {
-    flex: 1;
-    background: var(--c-bg);
-    border: 1px solid var(--c-glow);
-    border-radius: 2px;
-    padding: 10px 14px;
-    color: white;
-    font-family: var(--font-display);
-    font-size: 18px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    /* Prevent iOS auto-zoom (requires font-size >= 16px) */
-    -webkit-text-size-adjust: 100%;
+    flex: 1; background: var(--c-bg); border: 1px solid var(--c-glow); border-radius: 2px;
+    padding: 10px 14px; color: white; font-family: var(--font-display); font-size: 18px;
+    letter-spacing: 0.3em; text-transform: uppercase; outline: none;
+    transition: border-color 0.2s; -webkit-text-size-adjust: 100%;
   }
-  @media (max-width: 480px) {
-    .code-input {
-      font-size: 16px;
-      letter-spacing: 0.2em;
-      padding: 10px 10px;
-    }
-  }
-  .code-input::placeholder {
-    color: var(--c-dim);
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    font-family: var(--font-mono);
-  }
-  .code-input:focus {
-    border-color: var(--c-accent);
-  }
+  @media (max-width: 480px) { .code-input { font-size: 16px; letter-spacing: 0.2em; padding: 10px; } }
+  .code-input::placeholder { color: var(--c-dim); font-size: 12px; letter-spacing: 0.15em; font-family: var(--font-mono); }
+  .code-input:focus { border-color: var(--c-accent); }
 
-  /* Submit button */
   .submit-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--c-glow);
-    color: var(--c-accent);
-    font-family: var(--font-display);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    padding: 12px;
-    cursor: pointer;
+    width: 100%; background: transparent; border: 1px solid var(--c-glow);
+    color: var(--c-accent); font-family: var(--font-display); font-size: 11px;
+    font-weight: 700; letter-spacing: 0.3em; padding: 12px; cursor: pointer;
     transition: background 0.15s, color 0.15s, border-color 0.15s;
-    text-transform: uppercase;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
+    text-transform: uppercase; border-radius: 2px;
   }
-  .submit-btn:hover {
-    background: var(--c-accent2);
-    border-color: var(--c-accent);
-    color: white;
-  }
-  .submit-btn:active {
-    transform: scale(0.99);
-  }
-  .submit-btn.loading {
-    color: var(--c-dim);
-    pointer-events: none;
-  }
+  .submit-btn:hover { background: var(--c-accent2); border-color: var(--c-accent); color: white; }
+  .submit-btn:active { transform: scale(0.99); }
+  .submit-btn.loading { color: var(--c-dim); pointer-events: none; }
 
-  /* Shake animation */
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
-    15% { transform: translateX(-6px); }
-    30% { transform: translateX(6px); }
-    45% { transform: translateX(-4px); }
-    60% { transform: translateX(4px); }
-    75% { transform: translateX(-2px); }
-    90% { transform: translateX(2px); }
+    15% { transform: translateX(-6px); } 30% { transform: translateX(6px); }
+    45% { transform: translateX(-4px); } 60% { transform: translateX(4px); }
+    75% { transform: translateX(-2px); } 90% { transform: translateX(2px); }
   }
   .shake { animation: shake 0.45s ease-out; }
 
-  /* Success flash */
   @keyframes successFlash {
-    0% { border-color: var(--c-glow); }
-    30% { border-color: var(--c-success); }
-    100% { border-color: var(--c-glow); }
+    0% { border-color: var(--c-glow); } 30% { border-color: var(--c-success); } 100% { border-color: var(--c-glow); }
   }
   .success-flash { animation: successFlash 1.2s ease-out; }
 
-  /* Danger flash */
   @keyframes dangerFlash {
-    0% { border-color: var(--c-glow); }
-    30% { border-color: var(--c-danger); }
-    100% { border-color: var(--c-glow); }
+    0% { border-color: var(--c-glow); } 30% { border-color: var(--c-danger); } 100% { border-color: var(--c-glow); }
   }
   .danger-flash { animation: dangerFlash 0.8s ease-out; }
 
-  /* Footer */
-  .footer-info {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--c-border);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    color: var(--c-dim);
-  }
-
-  /* Coordinate display */
   .coord-display {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    color: var(--c-border);
-    text-align: right;
-    line-height: 1.8;
-    z-index: 10;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; font-size: 9px;
+    letter-spacing: 0.1em; color: var(--c-border); text-align: right; line-height: 1.8; z-index: 10;
   }
-  @media (max-width: 600px) {
-    .coord-display {
-      bottom: 0.5rem;
-      right: 0.75rem;
-      font-size: 8px;
-    }
-  }
+  @media (max-width: 600px) { .coord-display { bottom: 0.5rem; right: 0.75rem; font-size: 8px; } }
 
-  /* Overlay on success */
+  /* ── Overlays ── */
   .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 20;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: fixed; inset: 0; z-index: 20;
+    display: none; align-items: center; justify-content: center;
     background: rgba(4,7,15,0.92);
   }
   .overlay.show { display: flex; }
+
   .overlay-box {
-    text-align: center;
-    padding: 3rem;
+    text-align: center; padding: 3rem;
     border: 1px solid var(--c-success);
     background: var(--c-panel);
     animation: overlayIn 0.4s ease-out;
     margin: 1rem;
   }
-  @media (max-width: 480px) {
-    .overlay-box {
-      padding: 2rem 1.25rem;
-      width: 100%;
-    }
-  }
+  .overlay-box.fail { border-color: var(--c-danger); }
+
+  @media (max-width: 480px) { .overlay-box { padding: 2rem 1.25rem; width: 100%; } }
+
   @keyframes overlayIn {
     from { opacity: 0; transform: scale(0.95); }
     to   { opacity: 1; transform: scale(1); }
   }
+
   .overlay-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 0.25em;
-    color: var(--c-success);
-    margin-bottom: 12px;
+    font-family: var(--font-display); font-size: 22px; font-weight: 900;
+    letter-spacing: 0.25em; color: var(--c-success); margin-bottom: 12px;
   }
-  @media (max-width: 480px) {
-    .overlay-title {
-      font-size: 16px;
-      letter-spacing: 0.15em;
-    }
-  }
+  .overlay-title.fail { color: var(--c-danger); }
+  @media (max-width: 480px) { .overlay-title { font-size: 16px; letter-spacing: 0.15em; } }
+
   .overlay-sub {
-    font-family: var(--font-kr);
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--c-text);
-    letter-spacing: 0.15em;
-    margin-bottom: 2rem;
-    line-height: 2;
+    font-family: var(--font-kr); font-size: 13px; font-weight: 300;
+    color: var(--c-text); letter-spacing: 0.15em; line-height: 2;
   }
-  .overlay-close {
-    background: none;
-    border: 1px solid var(--c-success);
-    color: var(--c-success);
-    font-family: var(--font-display);
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    padding: 8px 24px;
-    cursor: pointer;
+  .overlay-sub .mono {
+    display: block; font-family: var(--font-mono);
+    font-size: 10px; color: var(--c-dim); letter-spacing: 0.2em;
   }
-  .overlay-close:hover {
-    background: var(--c-success);
-    color: var(--c-bg);
-  }
-
-
 </style>
 </head>
 <body>
@@ -508,8 +262,8 @@
       </div>
 
       <div class="log-area" id="logArea">
-        <span class="log-line info" id="initLog1">&gt; SYSTEM INITIALIZED</span>
-        <span class="log-line info" id="initLog2">&gt; AWAITING AUTHENTICATION...</span>
+        <span class="log-line info">&gt; SYSTEM INITIALIZED</span>
+        <span class="log-line info">&gt; AWAITING AUTHENTICATION...</span>
       </div>
 
       <div class="input-row">
@@ -529,39 +283,47 @@
         ▶ AUTHENTICATE
       </button>
 
-
-
     </div>
   </div>
 </div>
 
-<!-- Success overlay -->
-<div class="overlay" id="overlay">
+<!-- 정답 오버레이 -->
+<div class="overlay" id="overlaySuccess">
   <div class="overlay-box">
     <div class="overlay-title">ACCESS GRANTED</div>
     <div class="overlay-sub">
       코드 확인됨<br>
       탈출 성공<br>
-      <span style="font-family:var(--font-mono); font-size:10px; color:var(--c-dim); letter-spacing:0.2em;">
-        TRAJECTORY LOCKED
-      </span>
+      <span class="mono">TRAJECTORY LOCKED</span>
     </div>
   </div>
 </div>
 
-<div class="coord-display" id="coords">
-  <div>LAT 37.5665°N</div>
-  <div>LON 126.9780°E</div>
-  <div id="coordYear">STARDATE 2386.7</div>
+<!-- 오답 오버레이 -->
+<div class="overlay" id="overlayFail">
+  <div class="overlay-box fail">
+    <div class="overlay-title fail">ACCESS DENIED</div>
+    <div class="overlay-sub">
+      인증 실패<br>
+      탈출 불가<br>
+      <span class="mono">CONNECTION TERMINATED</span>
+    </div>
+  </div>
 </div>
 
-<audio id="rightSound" src="right.mp3" preload="auto"></audio>
+<div class="coord-display">
+  <div>LAT 37.5665°N</div>
+  <div>LON 126.9780°E</div>
+  <div>STARDATE 2386.7</div>
+</div>
+
+<audio id="rightSound" src="right.wav" preload="auto"></audio>
 <audio id="wrongSound" src="wrong.mp3" preload="auto"></audio>
 
 <script>
   // ─── 정답 코드를 바꾸려면: hash-generator.html을 열어 새 해시를 생성한 뒤
-  //     아래 값만 교체하세요. 
-  const CORRECT_HASH = 'b914d613c73fdf0799fee7084089c159b41636d61254f83a347f2c651eb1efa0';
+  //     아래 값만 교체하세요.
+  const CORRECT_HASH = '703ed1885091b4f91252039c35a4a83274a03fe06a1a6e822b7ab1194f1d0b4c';
   // ────────────────────────────────────────────────────────────────────
 
   let done = false;
@@ -599,46 +361,29 @@
   setInterval(updateClock, 1000);
   updateClock();
 
-  // Log message
-  let logLines = 2;
-  function addLog(msg, type='info') {
+  // Log
+  function addLog(msg, type = 'info') {
     const area = document.getElementById('logArea');
     const line = document.createElement('span');
     line.className = `log-line ${type}`;
     line.style.animationDelay = '0s';
     line.textContent = msg;
     area.appendChild(line);
-    logLines++;
     while (area.children.length > 6) area.removeChild(area.firstChild);
-    area.scrollTop = area.scrollHeight;
   }
 
-  function playSound(id) {
-    const audio = document.getElementById(id);
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }
-  }
-
-  // Web Audio fallback tones (used if audio files fail)
+  // Web Audio fallback
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   let ctx;
-  function ensureCtx() {
-    if (!ctx) ctx = new AudioCtx();
-    return ctx;
-  }
+  function ensureCtx() { if (!ctx) ctx = new AudioCtx(); return ctx; }
 
   function playSuccessTone() {
     try {
       const c = ensureCtx();
-      const freqs = [440, 554, 659, 880];
-      freqs.forEach((freq, i) => {
-        const osc = c.createOscillator();
-        const gain = c.createGain();
+      [440, 554, 659, 880].forEach((freq, i) => {
+        const osc = c.createOscillator(), gain = c.createGain();
         osc.connect(gain); gain.connect(c.destination);
-        osc.frequency.value = freq;
-        osc.type = 'sine';
+        osc.frequency.value = freq; osc.type = 'sine';
         const t = c.currentTime + i * 0.12;
         gain.gain.setValueAtTime(0, t);
         gain.gain.linearRampToValueAtTime(0.18, t + 0.02);
@@ -651,12 +396,10 @@
   function playFailTone() {
     try {
       const c = ensureCtx();
-      [[180, 0], [160, 0.18], [140, 0.36]].forEach(([freq, delay]) => {
-        const osc = c.createOscillator();
-        const gain = c.createGain();
+      [[180,0],[160,0.18],[140,0.36]].forEach(([freq, delay]) => {
+        const osc = c.createOscillator(), gain = c.createGain();
         osc.connect(gain); gain.connect(c.destination);
-        osc.frequency.value = freq;
-        osc.type = 'sawtooth';
+        osc.frequency.value = freq; osc.type = 'sawtooth';
         const t = c.currentTime + delay;
         gain.gain.setValueAtTime(0, t);
         gain.gain.linearRampToValueAtTime(0.15, t + 0.01);
@@ -670,73 +413,57 @@
   async function handleSubmit() {
     if (done) return;
     const input = document.getElementById('codeInput');
-    const terminal = document.getElementById('terminal');
     const val = input.value.trim().toLowerCase();
-
     if (!val) return;
+
+    done = true;
+    const btn = document.getElementById('submitBtn');
+    const terminal = document.getElementById('terminal');
+    input.disabled = true;
+    btn.disabled = true;
+    btn.classList.add('loading');
 
     const inputHash = await sha256(val);
 
     if (inputHash === CORRECT_HASH) {
-      // ─── CORRECT ───
-      done = true;
-      const btn = document.getElementById('submitBtn');
-      input.disabled = true;
-      btn.disabled = true;
-      btn.classList.add('loading');
-
+      // ─── 정답 ───
       terminal.classList.add('success-flash');
       setTimeout(() => terminal.classList.remove('success-flash'), 1200);
-
-      const rightAudio = document.getElementById('rightSound');
-      rightAudio.currentTime = 0;
-      rightAudio.play().catch(() => playSuccessTone());
 
       addLog('> AUTHENTICATION SUCCESSFUL', 'success');
       addLog('> ACCESS LEVEL: CLEARANCE-7', 'success');
       addLog('> DESTINATION CONFIRMED', 'success');
 
+      setTimeout(() => document.getElementById('overlaySuccess').classList.add('show'), 800);
       setTimeout(() => {
-        document.getElementById('overlay').classList.add('show');
-      }, 800);
+        const a = document.getElementById('rightSound');
+        a.currentTime = 0;
+        a.play().catch(() => playSuccessTone());
+      }, 2000);
 
     } else {
-      // ─── WRONG ───
-      terminal.classList.add('shake');
-      terminal.classList.add('danger-flash');
-      setTimeout(() => {
-        terminal.classList.remove('shake');
-        terminal.classList.remove('danger-flash');
-      }, 600);
-
-      const wrongAudio = document.getElementById('wrongSound');
-      wrongAudio.currentTime = 0;
-      wrongAudio.play().catch(() => playFailTone());
+      // ─── 오답 ───
+      terminal.classList.add('shake', 'danger-flash');
+      setTimeout(() => terminal.classList.remove('shake', 'danger-flash'), 800);
 
       addLog(`> AUTH FAILED: "${val.toUpperCase()}"`, 'danger');
-      addLog('> INVALID ACCESS CODE', 'danger');
+      addLog('> ACCESS DENIED', 'danger');
 
-      input.value = '';
-      input.focus();
+      setTimeout(() => document.getElementById('overlayFail').classList.add('show'), 800);
+      setTimeout(() => {
+        const a = document.getElementById('wrongSound');
+        a.currentTime = 0;
+        a.play().catch(() => playFailTone());
+      }, 2000);
     }
   }
 
-  function closeOverlay() {
-    document.getElementById('overlay').classList.remove('show');
-  }
-
-  // Enter key
-  document.getElementById('codeInput').addEventListener('keydown', (e) => {
+  document.getElementById('codeInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') handleSubmit();
   });
 
-  // Focus input on load
   window.addEventListener('load', () => {
-    const input = document.getElementById('codeInput');
-    // On mobile, don't auto-focus (avoids keyboard popping up immediately)
-    if (window.innerWidth > 600) {
-      input.focus();
-    }
+    if (window.innerWidth > 600) document.getElementById('codeInput').focus();
   });
 </script>
 </body>
